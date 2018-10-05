@@ -1,5 +1,5 @@
 Analysis & Synthesis report for crossbar
-Wed Sep 26 17:18:43 2018
+Fri Oct 05 23:59:22 2018
 Quartus Prime Version 18.0.0 Build 614 04/24/2018 SJ Lite Edition
 
 
@@ -13,17 +13,19 @@ Quartus Prime Version 18.0.0 Build 614 04/24/2018 SJ Lite Edition
   5. Analysis & Synthesis Source Files Read
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
-  8. General Register Statistics
-  9. Inverted Register Statistics
- 10. Multiplexer Restructuring Statistics (Restructuring Performed)
- 11. Parameter Settings for User Entity Instance: toSlave:slave_0
- 12. Parameter Settings for User Entity Instance: toSlave:slave_1
- 13. Port Connectivity Checks: "toSlave:slave_1"
- 14. Port Connectivity Checks: "toSlave:slave_0"
- 15. Post-Synthesis Netlist Statistics for Top Partition
- 16. Elapsed Time Per Partition
- 17. Analysis & Synthesis Messages
- 18. Analysis & Synthesis Suppressed Messages
+  8. Registers Removed During Synthesis
+  9. Removed Registers Triggering Further Register Optimizations
+ 10. General Register Statistics
+ 11. Inverted Register Statistics
+ 12. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 13. Parameter Settings for User Entity Instance: arbiter:a0
+ 14. Parameter Settings for User Entity Instance: arbiter:a1
+ 15. Port Connectivity Checks: "arbiter:a1"
+ 16. Port Connectivity Checks: "arbiter:a0"
+ 17. Post-Synthesis Netlist Statistics for Top Partition
+ 18. Elapsed Time Per Partition
+ 19. Analysis & Synthesis Messages
+ 20. Analysis & Synthesis Suppressed Messages
 
 
 
@@ -49,14 +51,14 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Wed Sep 26 17:14:31 2018       ;
+; Analysis & Synthesis Status     ; Successful - Fri Oct 05 23:54:33 2018       ;
 ; Quartus Prime Version           ; 18.0.0 Build 614 04/24/2018 SJ Lite Edition ;
 ; Revision Name                   ; crossbar                                    ;
 ; Top-level Entity Name           ; crossbar                                    ;
 ; Family                          ; Cyclone V                                   ;
 ; Logic utilization (in ALMs)     ; N/A                                         ;
-; Total registers                 ; 564                                         ;
-; Total pins                      ; 395                                         ;
+; Total registers                 ; 210                                         ;
+; Total pins                      ; 399                                         ;
 ; Total virtual pins              ; 0                                           ;
 ; Total block memory bits         ; 0                                           ;
 ; Total DSP Blocks                ; 0                                           ;
@@ -173,16 +175,15 @@ refer to the applicable agreement for further details.
 +----------------------------+-------------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                     ;
-+----------------------------------+-----------------+------------------------+------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path       ; Library ;
-+----------------------------------+-----------------+------------------------+------------------------------------+---------+
-; ../../11111/toSlave.v            ; yes             ; User Verilog HDL File  ; D:/intelFPGA_lite/11111/toSlave.v  ;         ;
-; ../../11111/toMaster.v           ; yes             ; User Verilog HDL File  ; D:/intelFPGA_lite/11111/toMaster.v ;         ;
-; ../../11111/crossbar.v           ; yes             ; User Verilog HDL File  ; D:/intelFPGA_lite/11111/crossbar.v ;         ;
-; ../../11111/arbiter.v            ; yes             ; User Verilog HDL File  ; D:/intelFPGA_lite/11111/arbiter.v  ;         ;
-+----------------------------------+-----------------+------------------------+------------------------------------+---------+
++-------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                          ;
++----------------------------------+-----------------+------------------------+---------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path                            ; Library ;
++----------------------------------+-----------------+------------------------+---------------------------------------------------------+---------+
+; ../../11111/toMaster.v           ; yes             ; User Verilog HDL File  ; D:/intelFPGA_lite/v2/crossbar_restored/11111/toMaster.v ;         ;
+; ../../11111/crossbar.v           ; yes             ; User Verilog HDL File  ; D:/intelFPGA_lite/v2/crossbar_restored/11111/crossbar.v ;         ;
+; ../../11111/arbiter.v            ; yes             ; User Verilog HDL File  ; D:/intelFPGA_lite/v2/crossbar_restored/11111/arbiter.v  ;         ;
++----------------------------------+-----------------+------------------------+---------------------------------------------------------+---------+
 
 
 +---------------------------------------------------------+
@@ -190,25 +191,25 @@ refer to the applicable agreement for further details.
 +---------------------------------------------+-----------+
 ; Resource                                    ; Usage     ;
 +---------------------------------------------+-----------+
-; Estimate of Logic utilization (ALMs needed) ; 284       ;
+; Estimate of Logic utilization (ALMs needed) ; 110       ;
 ;                                             ;           ;
-; Combinational ALUT usage for logic          ; 28        ;
+; Combinational ALUT usage for logic          ; 22        ;
 ;     -- 7 input functions                    ; 0         ;
-;     -- 6 input functions                    ; 0         ;
-;     -- 5 input functions                    ; 2         ;
-;     -- 4 input functions                    ; 0         ;
-;     -- <=3 input functions                  ; 26        ;
+;     -- 6 input functions                    ; 2         ;
+;     -- 5 input functions                    ; 4         ;
+;     -- 4 input functions                    ; 4         ;
+;     -- <=3 input functions                  ; 12        ;
 ;                                             ;           ;
-; Dedicated logic registers                   ; 564       ;
+; Dedicated logic registers                   ; 210       ;
 ;                                             ;           ;
-; I/O pins                                    ; 395       ;
+; I/O pins                                    ; 399       ;
 ;                                             ;           ;
 ; Total DSP Blocks                            ; 0         ;
 ;                                             ;           ;
 ; Maximum fan-out node                        ; clk~input ;
-; Maximum fan-out                             ; 564       ;
-; Total fan-out                               ; 2429      ;
-; Average fan-out                             ; 1.76      ;
+; Maximum fan-out                             ; 210       ;
+; Total fan-out                               ; 1739      ;
+; Average fan-out                             ; 1.69      ;
 +---------------------------------------------+-----------+
 
 
@@ -217,15 +218,40 @@ refer to the applicable agreement for further details.
 +----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-----------------------------+-------------+--------------+
 ; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name         ; Entity Name ; Library Name ;
 +----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-----------------------------+-------------+--------------+
-; |crossbar                  ; 28 (2)              ; 564 (256)                 ; 0                 ; 0          ; 395  ; 0            ; |crossbar                   ; crossbar    ; work         ;
-;    |arbiter:a0|            ; 5 (5)               ; 4 (4)                     ; 0                 ; 0          ; 0    ; 0            ; |crossbar|arbiter:a0        ; arbiter     ; work         ;
-;    |arbiter:a1|            ; 5 (5)               ; 4 (4)                     ; 0                 ; 0          ; 0    ; 0            ; |crossbar|arbiter:a1        ; arbiter     ; work         ;
-;    |toMaster:master_0|     ; 4 (4)               ; 48 (48)                   ; 0                 ; 0          ; 0    ; 0            ; |crossbar|toMaster:master_0 ; toMaster    ; work         ;
-;    |toMaster:master_1|     ; 4 (4)               ; 48 (48)                   ; 0                 ; 0          ; 0    ; 0            ; |crossbar|toMaster:master_1 ; toMaster    ; work         ;
-;    |toSlave:slave_0|       ; 4 (4)               ; 102 (102)                 ; 0                 ; 0          ; 0    ; 0            ; |crossbar|toSlave:slave_0   ; toSlave     ; work         ;
-;    |toSlave:slave_1|       ; 4 (4)               ; 102 (102)                 ; 0                 ; 0          ; 0    ; 0            ; |crossbar|toSlave:slave_1   ; toSlave     ; work         ;
+; |crossbar                  ; 22 (2)              ; 210 (0)                   ; 0                 ; 0          ; 399  ; 0            ; |crossbar                   ; crossbar    ; work         ;
+;    |arbiter:a0|            ; 9 (9)               ; 69 (69)                   ; 0                 ; 0          ; 0    ; 0            ; |crossbar|arbiter:a0        ; arbiter     ; work         ;
+;    |arbiter:a1|            ; 9 (9)               ; 69 (69)                   ; 0                 ; 0          ; 0    ; 0            ; |crossbar|arbiter:a1        ; arbiter     ; work         ;
+;    |toMaster:master_0|     ; 1 (1)               ; 36 (36)                   ; 0                 ; 0          ; 0    ; 0            ; |crossbar|toMaster:master_0 ; toMaster    ; work         ;
+;    |toMaster:master_1|     ; 1 (1)               ; 36 (36)                   ; 0                 ; 0          ; 0    ; 0            ; |crossbar|toMaster:master_1 ; toMaster    ; work         ;
 +----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-----------------------------+-------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++--------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                             ;
++---------------------------------------+----------------------------------------+
+; Register name                         ; Reason for Removal                     ;
++---------------------------------------+----------------------------------------+
+; toMaster:master_1|resp                ; Stuck at GND due to stuck port data_in ;
+; toMaster:master_0|resp                ; Stuck at GND due to stuck port data_in ;
+; toMaster:master_1|gr_r                ; Lost fanout                            ;
+; toMaster:master_0|gr_r                ; Lost fanout                            ;
+; arbiter:a1|grant1                     ; Lost fanout                            ;
+; arbiter:a1|grant0                     ; Lost fanout                            ;
+; arbiter:a0|grant1                     ; Lost fanout                            ;
+; arbiter:a0|grant0                     ; Lost fanout                            ;
+; Total Number of Removed Registers = 8 ;                                        ;
++---------------------------------------+----------------------------------------+
+
+
++--------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                          ;
++------------------------+--------------------+----------------------------------------+
+; Register name          ; Reason for Removal ; Registers Removed due to This Register ;
++------------------------+--------------------+----------------------------------------+
+; toMaster:master_1|gr_r ; Lost Fanouts       ; arbiter:a1|grant1, arbiter:a0|grant1   ;
+; toMaster:master_0|gr_r ; Lost Fanouts       ; arbiter:a1|grant0, arbiter:a0|grant0   ;
++------------------------+--------------------+----------------------------------------+
 
 
 +------------------------------------------------------+
@@ -233,12 +259,12 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 564   ;
-; Number of registers using Synchronous Clear  ; 128   ;
-; Number of registers using Synchronous Load   ; 192   ;
+; Total registers                              ; 210   ;
+; Number of registers using Synchronous Clear  ; 130   ;
+; Number of registers using Synchronous Load   ; 194   ;
 ; Number of registers using Asynchronous Clear ; 0     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 132   ;
+; Number of registers using Clock Enable       ; 138   ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -254,56 +280,54 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------+---------+
 
 
-+---------------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                    ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output          ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------+
-; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |crossbar|toSlave:slave_0|wdata[31] ;
-; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |crossbar|toSlave:slave_1|cmd       ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; Yes        ; |crossbar|arbiter:a0|grant0         ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; Yes        ; |crossbar|arbiter:a1|grant0         ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------+
++---------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                              ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output    ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------+
+; 6:1                ; 2 bits    ; 8 LEs         ; 6 LEs                ; 2 LEs                  ; Yes        ; |crossbar|arbiter:a0|ack_o_1  ;
+; 6:1                ; 65 bits   ; 260 LEs       ; 0 LEs                ; 260 LEs                ; Yes        ; |crossbar|arbiter:a0|addr[27] ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 6 LEs                ; 2 LEs                  ; Yes        ; |crossbar|arbiter:a1|ack_o_0  ;
+; 6:1                ; 65 bits   ; 260 LEs       ; 0 LEs                ; 260 LEs                ; Yes        ; |crossbar|arbiter:a1|cmd      ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------+
 
 
-+--------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: toSlave:slave_0 ;
-+----------------+-------+-------------------------------------+
-; Parameter Name ; Value ; Type                                ;
-+----------------+-------+-------------------------------------+
-; num            ; 0     ; Signed Integer                      ;
-+----------------+-------+-------------------------------------+
++---------------------------------------------------------+
+; Parameter Settings for User Entity Instance: arbiter:a0 ;
++----------------+-------+--------------------------------+
+; Parameter Name ; Value ; Type                           ;
++----------------+-------+--------------------------------+
+; num            ; 0     ; Signed Integer                 ;
++----------------+-------+--------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
-+--------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: toSlave:slave_1 ;
-+----------------+-------+-------------------------------------+
-; Parameter Name ; Value ; Type                                ;
-+----------------+-------+-------------------------------------+
-; num            ; 1     ; Signed Integer                      ;
-+----------------+-------+-------------------------------------+
++---------------------------------------------------------+
+; Parameter Settings for User Entity Instance: arbiter:a1 ;
++----------------+-------+--------------------------------+
+; Parameter Name ; Value ; Type                           ;
++----------------+-------+--------------------------------+
+; num            ; 1     ; Signed Integer                 ;
++----------------+-------+--------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "toSlave:slave_1"                                                                                                                                                  ;
-+---------------+-------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Port          ; Type  ; Severity ; Details                                                                                                                                                   ;
-+---------------+-------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
-; master_0_addr ; Input ; Warning  ; Input port expression (31 bits) is smaller than the input port (32 bits) it drives.  Extra input bit(s) "master_0_addr[31..31]" will be connected to GND. ;
-; master_1_addr ; Input ; Warning  ; Input port expression (31 bits) is smaller than the input port (32 bits) it drives.  Extra input bit(s) "master_1_addr[31..31]" will be connected to GND. ;
-+---------------+-------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
++--------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "arbiter:a1"                                                                                                                 ;
++------+--------+----------+-----------------------------------------------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                                                                     ;
++------+--------+----------+-----------------------------------------------------------------------------------------------------------------------------+
+; addr ; Output ; Warning  ; Output or bidir port (32 bits) is wider than the port expression (31 bits) it drives; bit(s) "addr[31..31]" have no fanouts ;
++------+--------+----------+-----------------------------------------------------------------------------------------------------------------------------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "toSlave:slave_0"                                                                                                                                                  ;
-+---------------+-------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Port          ; Type  ; Severity ; Details                                                                                                                                                   ;
-+---------------+-------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
-; master_0_addr ; Input ; Warning  ; Input port expression (31 bits) is smaller than the input port (32 bits) it drives.  Extra input bit(s) "master_0_addr[31..31]" will be connected to GND. ;
-; master_1_addr ; Input ; Warning  ; Input port expression (31 bits) is smaller than the input port (32 bits) it drives.  Extra input bit(s) "master_1_addr[31..31]" will be connected to GND. ;
-+---------------+-------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
++--------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "arbiter:a0"                                                                                                                 ;
++------+--------+----------+-----------------------------------------------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                                                                     ;
++------+--------+----------+-----------------------------------------------------------------------------------------------------------------------------+
+; addr ; Output ; Warning  ; Output or bidir port (32 bits) is wider than the port expression (31 bits) it drives; bit(s) "addr[31..31]" have no fanouts ;
++------+--------+----------+-----------------------------------------------------------------------------------------------------------------------------+
 
 
 +-----------------------------------------------------+
@@ -311,21 +335,23 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; arriav_ff             ; 564                         ;
-;     ENA               ; 4                           ;
-;     ENA SCLR SLD      ; 128                         ;
+; arriav_ff             ; 210                         ;
+;     ENA               ; 8                           ;
+;     ENA SCLR SLD      ; 130                         ;
 ;     SLD               ; 64                          ;
-;     plain             ; 368                         ;
-; arriav_lcell_comb     ; 28                          ;
-;     normal            ; 28                          ;
+;     plain             ; 8                           ;
+; arriav_lcell_comb     ; 23                          ;
+;     normal            ; 23                          ;
+;         0 data inputs ; 1                           ;
 ;         1 data inputs ; 4                           ;
-;         2 data inputs ; 14                          ;
-;         3 data inputs ; 8                           ;
-;         5 data inputs ; 2                           ;
-; boundary_port         ; 395                         ;
+;         2 data inputs ; 8                           ;
+;         4 data inputs ; 4                           ;
+;         5 data inputs ; 4                           ;
+;         6 data inputs ; 2                           ;
+; boundary_port         ; 399                         ;
 ;                       ;                             ;
 ; Max LUT depth         ; 1.00                        ;
-; Average LUT depth     ; 0.08                        ;
+; Average LUT depth     ; 0.09                        ;
 +-----------------------+-----------------------------+
 
 
@@ -334,7 +360,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:00     ;
+; Top            ; 00:00:01     ;
 +----------------+--------------+
 
 
@@ -344,58 +370,60 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.0.0 Build 614 04/24/2018 SJ Lite Edition
-    Info: Processing started: Wed Sep 26 17:14:13 2018
+    Info: Processing started: Fri Oct 05 23:54:05 2018
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off crossbar -c crossbar
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
-Info (12021): Found 1 design units, including 1 entities, in source file /intelfpga_lite/11111/toslave.v
-    Info (12023): Found entity 1: toSlave File: D:/intelFPGA_lite/11111/toSlave.v Line: 1
-Info (12021): Found 1 design units, including 1 entities, in source file /intelfpga_lite/11111/tomaster.v
-    Info (12023): Found entity 1: toMaster File: D:/intelFPGA_lite/11111/toMaster.v Line: 1
-Info (12021): Found 1 design units, including 1 entities, in source file /intelfpga_lite/11111/testbench_crossbar.v
-    Info (12023): Found entity 1: testbench_crossbar File: D:/intelFPGA_lite/11111/testbench_crossbar.v Line: 4
-Info (12021): Found 1 design units, including 1 entities, in source file /intelfpga_lite/11111/slave.v
-    Info (12023): Found entity 1: slave File: D:/intelFPGA_lite/11111/slave.v Line: 1
-Info (12021): Found 1 design units, including 1 entities, in source file /intelfpga_lite/11111/crossbar.v
-    Info (12023): Found entity 1: crossbar File: D:/intelFPGA_lite/11111/crossbar.v Line: 1
-Info (12021): Found 1 design units, including 1 entities, in source file /intelfpga_lite/11111/arbiter.v
-    Info (12023): Found entity 1: arbiter File: D:/intelFPGA_lite/11111/arbiter.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file /intelfpga_lite/v2/crossbar_restored/11111/tomaster.v
+    Info (12023): Found entity 1: toMaster File: D:/intelFPGA_lite/v2/crossbar_restored/11111/toMaster.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file /intelfpga_lite/v2/crossbar_restored/11111/testbench_crossbar.v
+    Info (12023): Found entity 1: testbench_crossbar File: D:/intelFPGA_lite/v2/crossbar_restored/11111/testbench_crossbar.v Line: 4
+Info (12021): Found 1 design units, including 1 entities, in source file /intelfpga_lite/v2/crossbar_restored/11111/slave.v
+    Info (12023): Found entity 1: slave File: D:/intelFPGA_lite/v2/crossbar_restored/11111/slave.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file /intelfpga_lite/v2/crossbar_restored/11111/crossbar.v
+    Info (12023): Found entity 1: crossbar File: D:/intelFPGA_lite/v2/crossbar_restored/11111/crossbar.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file /intelfpga_lite/v2/crossbar_restored/11111/arbiter.v
+    Info (12023): Found entity 1: arbiter File: D:/intelFPGA_lite/v2/crossbar_restored/11111/arbiter.v Line: 1
 Info (12127): Elaborating entity "crossbar" for the top level hierarchy
-Warning (10230): Verilog HDL assignment warning at crossbar.v(49): truncated value with size 32 to match size of target (31) File: D:/intelFPGA_lite/11111/crossbar.v Line: 49
-Warning (10230): Verilog HDL assignment warning at crossbar.v(53): truncated value with size 32 to match size of target (31) File: D:/intelFPGA_lite/11111/crossbar.v Line: 53
-Info (12128): Elaborating entity "toMaster" for hierarchy "toMaster:master_0" File: D:/intelFPGA_lite/11111/crossbar.v Line: 22
-Info (10264): Verilog HDL Case Statement information at toMaster.v(52): all case item expressions in this case statement are onehot File: D:/intelFPGA_lite/11111/toMaster.v Line: 52
-Info (10264): Verilog HDL Case Statement information at toMaster.v(65): all case item expressions in this case statement are onehot File: D:/intelFPGA_lite/11111/toMaster.v Line: 65
-Info (12128): Elaborating entity "arbiter" for hierarchy "arbiter:a0" File: D:/intelFPGA_lite/11111/crossbar.v Line: 65
-Info (12128): Elaborating entity "toSlave" for hierarchy "toSlave:slave_0" File: D:/intelFPGA_lite/11111/crossbar.v Line: 79
-Warning (10230): Verilog HDL assignment warning at toSlave.v(31): truncated value with size 32 to match size of target (31) File: D:/intelFPGA_lite/11111/toSlave.v Line: 31
-Warning (10230): Verilog HDL assignment warning at toSlave.v(37): truncated value with size 32 to match size of target (31) File: D:/intelFPGA_lite/11111/toSlave.v Line: 37
-Info (10264): Verilog HDL Case Statement information at toSlave.v(45): all case item expressions in this case statement are onehot File: D:/intelFPGA_lite/11111/toSlave.v Line: 45
-Info (10264): Verilog HDL Case Statement information at toSlave.v(52): all case item expressions in this case statement are onehot File: D:/intelFPGA_lite/11111/toSlave.v Line: 52
-Info (12128): Elaborating entity "toSlave" for hierarchy "toSlave:slave_1" File: D:/intelFPGA_lite/11111/crossbar.v Line: 93
-Warning (10230): Verilog HDL assignment warning at toSlave.v(31): truncated value with size 32 to match size of target (31) File: D:/intelFPGA_lite/11111/toSlave.v Line: 31
-Warning (10230): Verilog HDL assignment warning at toSlave.v(37): truncated value with size 32 to match size of target (31) File: D:/intelFPGA_lite/11111/toSlave.v Line: 37
-Info (10264): Verilog HDL Case Statement information at toSlave.v(45): all case item expressions in this case statement are onehot File: D:/intelFPGA_lite/11111/toSlave.v Line: 45
-Info (10264): Verilog HDL Case Statement information at toSlave.v(52): all case item expressions in this case statement are onehot File: D:/intelFPGA_lite/11111/toSlave.v Line: 52
+Info (12128): Elaborating entity "toMaster" for hierarchy "toMaster:master_0" File: D:/intelFPGA_lite/v2/crossbar_restored/11111/crossbar.v Line: 27
+Warning (10036): Verilog HDL or VHDL warning at toMaster.v(10): object "req0_rr" assigned a value but never read File: D:/intelFPGA_lite/v2/crossbar_restored/11111/toMaster.v Line: 10
+Warning (10036): Verilog HDL or VHDL warning at toMaster.v(10): object "req1_rr" assigned a value but never read File: D:/intelFPGA_lite/v2/crossbar_restored/11111/toMaster.v Line: 10
+Warning (10036): Verilog HDL or VHDL warning at toMaster.v(11): object "gr_rr" assigned a value but never read File: D:/intelFPGA_lite/v2/crossbar_restored/11111/toMaster.v Line: 11
+Info (10264): Verilog HDL Case Statement information at toMaster.v(45): all case item expressions in this case statement are onehot File: D:/intelFPGA_lite/v2/crossbar_restored/11111/toMaster.v Line: 45
+Info (10264): Verilog HDL Case Statement information at toMaster.v(64): all case item expressions in this case statement are onehot File: D:/intelFPGA_lite/v2/crossbar_restored/11111/toMaster.v Line: 64
+Info (12128): Elaborating entity "arbiter" for hierarchy "arbiter:a0" File: D:/intelFPGA_lite/v2/crossbar_restored/11111/crossbar.v Line: 46
+Info (12128): Elaborating entity "arbiter" for hierarchy "arbiter:a1" File: D:/intelFPGA_lite/v2/crossbar_restored/11111/crossbar.v Line: 59
+Warning (12011): Net is missing source, defaulting to GND
+    Warning (12110): Net "slave_0_resp" is missing source, defaulting to GND File: D:/intelFPGA_lite/v2/crossbar_restored/11111/crossbar.v Line: 4
+    Warning (12110): Net "slave_1_resp" is missing source, defaulting to GND File: D:/intelFPGA_lite/v2/crossbar_restored/11111/crossbar.v Line: 4
 Warning (12241): 2 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "master_0_resp" is stuck at GND File: D:/intelFPGA_lite/v2/crossbar_restored/11111/crossbar.v Line: 4
+    Warning (13410): Pin "master_1_resp" is stuck at GND File: D:/intelFPGA_lite/v2/crossbar_restored/11111/crossbar.v Line: 4
+    Warning (13410): Pin "slave_0_resp" is stuck at GND File: D:/intelFPGA_lite/v2/crossbar_restored/11111/crossbar.v Line: 4
+    Warning (13410): Pin "slave_1_resp" is stuck at GND File: D:/intelFPGA_lite/v2/crossbar_restored/11111/crossbar.v Line: 4
 Info (286030): Timing-Driven Synthesis is running
-Info (144001): Generated suppressed messages file D:/intelFPGA_lite/RTL intern/crossbar/output_files/crossbar.map.smsg
+Info (17049): 6 registers lost all their fanouts during netlist optimizations.
+Info (144001): Generated suppressed messages file D:/intelFPGA_lite/v2/crossbar_restored/RTL intern/crossbar/output_files/crossbar.map.smsg
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 967 device resources after synthesis - the final resource count might be different
+Warning (21074): Design contains 2 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "slave_0_ack" File: D:/intelFPGA_lite/v2/crossbar_restored/11111/crossbar.v Line: 2
+    Warning (15610): No output dependent on input pin "slave_1_ack" File: D:/intelFPGA_lite/v2/crossbar_restored/11111/crossbar.v Line: 2
+Info (21057): Implemented 621 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 199 input pins
-    Info (21059): Implemented 196 output pins
-    Info (21061): Implemented 572 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 8 warnings
-    Info: Peak virtual memory: 4833 megabytes
-    Info: Processing ended: Wed Sep 26 17:14:31 2018
-    Info: Elapsed time: 00:00:18
-    Info: Total CPU time (on all processors): 00:00:37
+    Info (21059): Implemented 200 output pins
+    Info (21061): Implemented 222 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 16 warnings
+    Info: Peak virtual memory: 4829 megabytes
+    Info: Processing ended: Fri Oct 05 23:54:33 2018
+    Info: Elapsed time: 00:00:28
+    Info: Total CPU time (on all processors): 00:00:34
 
 
 +------------------------------------------+
 ; Analysis & Synthesis Suppressed Messages ;
 +------------------------------------------+
-The suppressed messages can be found in D:/intelFPGA_lite/RTL intern/crossbar/crossbar.map.smsg.
+The suppressed messages can be found in D:/intelFPGA_lite/v2/crossbar_restored/RTL intern/crossbar/crossbar.map.smsg.
 
 

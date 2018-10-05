@@ -9,6 +9,7 @@ wire  [31:0] master_0_wdata, master_0_addr, master_1_wdata, master_1_addr, slave
 wire  master_0_ack, master_1_ack, slave_0_cmd, slave_1_cmd, slave_0_req, slave_1_req;
 wire  [31:0] master_0_rdata, master_1_rdata, slave_0_wdata, slave_1_wdata;
 wire  [30:0] slave_0_addr, slave_1_addr;
+wire	master_0_resp, master_1_resp, slave_0_resp, slave_1_resp;
 
 
 reg [31:0] wdata_0, wdata_1, addr_1, addr_0;
@@ -36,21 +37,25 @@ crossbar c1(.clk(clk),
 	.master_0_req(master_0_req),		.master_0_cmd(master_0_cmd), 
 	.master_0_wdata(master_0_wdata),	.master_0_addr(master_0_addr),
 	.master_0_ack(master_0_ack),		.master_0_rdata(master_0_rdata),
+	.master_0_resp(master_0_resp),
 	
 	.master_1_req(master_1_req),		.master_1_cmd(master_1_cmd), 
 	.master_1_wdata(master_1_wdata),	.master_1_addr(master_1_addr),
 	.master_1_ack(master_1_ack),		.master_1_rdata(master_1_rdata),
+	.master_1_resp(master_1_resp),
 	
 	.slave_0_req(slave_0_req),		.slave_0_cmd(slave_0_cmd),
 	.slave_0_addr(slave_0_addr),	.slave_0_wdata(slave_0_wdata), 
 	.slave_0_ack(slave_0_ack),		.slave_0_rdata(slave_0_rdata),
+	.slave_0_resp(slave_0_resp),
 	
 	.slave_1_req(slave_1_req),		.slave_1_cmd(slave_1_cmd), 
 	.slave_1_addr(slave_1_addr),	.slave_1_wdata(slave_1_wdata),
-	.slave_1_ack(slave_1_ack),		.slave_1_rdata(slave_1_rdata));
+	.slave_1_ack(slave_1_ack),		.slave_1_rdata(slave_1_rdata),
+	.slave_1_resp(slave_1_resp));
  
-slave slave_0(.clk(clk), .req(slave_0_req), .cmd(slave_0_cmd), .addr(slave_0_addr), .wdata(slave_0_wdata), .ack(slave_0_ack), .rdata(slave_0_rdata));
-slave slave_1(.clk(clk), .req(slave_1_req), .cmd(slave_1_cmd), .addr(slave_1_addr), .wdata(slave_1_wdata), .ack(slave_1_ack), .rdata(slave_1_rdata));
+slave slave_0(.clk(clk), .req(slave_0_req), .cmd(slave_0_cmd), .addr(slave_0_addr), .wdata(slave_0_wdata), .ack(slave_0_ack), .resp(slave_0_resp), .rdata(slave_0_rdata));
+slave slave_1(.clk(clk), .req(slave_1_req), .cmd(slave_1_cmd), .addr(slave_1_addr), .wdata(slave_1_wdata), .ack(slave_1_ack), .resp(slave_1_resp), .rdata(slave_1_rdata));
 
 
 assign clk=clk_reg;
